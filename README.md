@@ -15,6 +15,23 @@ A Python application for Raspberry Pi that logs temperature and humidity reading
 1. Run command: *pigpiod* (from PIGPIO directory).
 2. Run the python script.
 
+
+
+## Start at boot ##
+Make a file called startupscript.sh with this content:
+
+```bash
+#!/bin/sh
+/<path>/pigpiod &
+nohup python /<path>/pi-temp-logger.py &
+```
+
+Edit the file /etc/rc.local and add this line:
+```bash
+/<path>/startupscript.sh &
+```
+
+*Replace each `<path>` with your path to the files.*
 [Install MySQL, Create database, database user and table.]: http://www.raspipress.com/2014/06/tutorial-install-mysql-server-on-raspbian/
 [pigpio]: http://abyz.co.uk/rpi/pigpio/download.html
 [DHT22]: http://abyz.co.uk/rpi/pigpio/examples.html
